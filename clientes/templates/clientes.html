@@ -8,16 +8,16 @@
 {% block 'dashboard' %}
     <div class='container'>
         <div class='row'>
-            <div class='col-md card-dashboard'>
+            <div onclick='exibir_form("1")' class='col-md card-dashboard'>
                 <p class='text-card'>Adicionar clientes</p>
             </div>
             
-            <div class='col-md card-dashboard'>
+            <div onclick='exibir_form("2")' class='col-md card-dashboard'>
                 <p class='text-card'>Atualizar clientes</p>
             </div>
         </div>
 
-        <div class='adicionar-cliente'>
+        <div id='adicionar-cliente' class='adicionar-cliente'>
             <form action='{% url "clientes" %}' method='POST'> {% csrf_token %}
                 <div class='row'>
                     <div class='col-md'>
@@ -68,6 +68,36 @@
                 <br>
                 <input type='submit' value='Cadastrar' class='btn-principal'>
             </form>
+        </div>
+
+        <div id='att_cliente' class=''>
+            <p></p>
+
+            <select id='cliente-select' class='form-control' onchange='dados_cliente()'>
+                {% for cliente in clientes %}
+                    <option value='{{cliente.id}}'>{{cliente.nome}}</option>
+                {% endfor %}
+            </select>
+
+            <br />
+            <hr />
+
+            <div id='form-att-cliente'>
+                <p>Nome:</p>
+                <input id='nome' type='text' class='form-control' placeholder='Primeiro nome'>
+
+                
+                <p>Sobrenome:</p>
+                <input id='sobrenome' type='text' class='form-control' placeholder='Sobrenome'>
+
+                
+                <p>E-mail:</p>
+                <input type='email' class='form-control' placeholder='nome@email.com' id='email'>
+
+                
+                <p>CPF:</p>
+                <input type='text' class='form-control' placeholder='___.___.___-__' id='cpf'>
+            </div>
         </div>
     <div>
         
